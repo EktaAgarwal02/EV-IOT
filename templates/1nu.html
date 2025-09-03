@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>feature</title>
-    <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EVIoT Predictive Maintenance — Home</title>
+<style>
     /* ===== CSS RESET (minimal) ===== */
     *, *::before, *::after { box-sizing: border-box; }
     html, body { height: 100%; }
@@ -69,15 +69,6 @@
     .hero p{ font-size: clamp(1rem, 1.6vw, 1.2rem); margin: 0 0 28px; color: var(--muted); max-width: 70ch; }
     .hero-cta{ display:flex; gap:12px; flex-wrap: wrap; }
 
-    /* Decorative animated lines */
-    .lines{ position:absolute; inset: -20% -10% auto -10%; height: 60vh; z-index:-1; opacity:.45; filter: blur(0.1px); }
-    .line{ position:absolute; left:0; right:0; height:1px; background: linear-gradient(90deg, transparent, #fff, transparent); opacity:.35; animation: sweep 8s ease-in-out infinite; }
-    .line:nth-child(1){ top:10%; animation-delay: 0s; }
-    .line:nth-child(2){ top:25%; animation-delay: .6s; }
-    .line:nth-child(3){ top:40%; animation-delay: 1.2s; }
-    .line:nth-child(4){ top:55%; animation-delay: 1.8s; }
-    .line:nth-child(5){ top:70%; animation-delay: 2.4s; }
-    @keyframes sweep { 0%{ transform: translateX(-30%); opacity:.1 } 50%{ opacity:.65 } 100%{ transform: translateX(30%); opacity:.1 } }
 
     /* ===== FEATURE CARDS ===== */
     .features{ padding: 36px 0 72px; }
@@ -112,8 +103,10 @@
 </style>
 </head>
 <body>
+<div class="bg-layer"></div>
 
-    <header>
+<!-- ===== HEADER ===== -->
+<header>
     <div class="container nav">
     <div class="brand">
         <div class="logo" aria-hidden="true"></div>
@@ -121,7 +114,7 @@
     </div>
     <nav aria-label="Primary">
         <a href="#features">Features</a>
-        <a href="#about">About</a>
+        <a href="\templates\about.html">About</a>
         <a href="#get-started" class="btn" style="padding:10px 16px">Get Started</a>
     </nav>
     </div>
@@ -136,7 +129,24 @@
     <div class="line"></div>
     <div class="line"></div>
     </div>
-    
+    <div class="hero-content">
+    <h1 class="fade-up">Predictive Maintenance for EV Fleets</h1>
+    <img src="\static\image\ev-IoTimg1.jpg" alt="Electric Car Graphic" class="fade-up d1" style="width:100%; max-width:800px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5); margin-bottom:24px;">
+    </div>
+    <p class="fade-up d1">A monochrome, high-contrast landing page for your EVIoT project. Real‑time telemetry, smart models, and proactive upkeep—presented in a clean black‑and‑white aesthetic.</p>
+    <div class="hero-cta fade-up d2" id="get-started">
+    <a class="btn" href="#feature.html">Explore Features</a>
+    <a class="btn" href="#about.html" style="border-style:dashed">Learn More</a>
+    </div>
+
+    <div class="stats fade-up d3">
+    <div class="stat"><div class="num">175,393</div><div class="label">Records</div></div>
+    <div class="stat"><div class="num">5 Years</div><div class="label">15‑min Intervals</div></div>
+    <div class="stat"><div class="num">30+</div><div class="label">Features</div></div>
+    <div class="stat"><div class="num">4</div><div class="label">Targets (RUL, TTF, Health, Fail)</div></div>
+    </div>
+</section>
+
 <!-- ===== FEATURES ===== -->
 <section id="features" class="features container">
     <div class="grid cards">
@@ -167,13 +177,54 @@
     </div>
 </section>
 
+<!-- ===== Graph Modals (hidden initially) ===== -->
+<div id="battery" class="graph-modal"><span class="close" onclick="closeGraph('battery')">&times;</span>
+    <img src="/static/image/battery.png">
+</div>
+<div id="motor" class="graph-modal"><span class="close" onclick="closeGraph('motor')">&times;</span>
+    <img src="/static/image/motor.png">
+</div>
+<div id="braking" class="graph-modal"><span class="close" onclick="closeGraph('braking')">&times;</span>
+    <img src="/static/image/brake.png">
+</div>
+<div id="tires" class="graph-modal"><span class="close" onclick="closeGraph('tires')">&times;</span>
+    <img src="/static/image/tire.png">
+</div>
+<div id="forecast" class="graph-modal"><span class="close" onclick="closeGraph('forecast')">&times;</span>
+    <img src="/static/image/forecast.png">
+</div>
+<div id="federated" class="graph-modal"><span class="close" onclick="closeGraph('federated')">&times;</span>
+    <img src="/static/image/fleets.png">
+</div>
+
+<style>
+    
+
+.graph-modal {
+  display:none; 
+  position:fixed; 
+  inset:0; 
+  background:rgba(0,0,0,0.85); 
+  justify-content:center; 
+  align-items:center; 
+  z-index:1000;
+}
+.graph-modal img {
+  max-width:90%; 
+  max-height:90%; 
+  border-radius:10px; 
+  box-shadow:0 10px 25px rgba(0,0,0,0.5);
+}
+.graph-modal .close {
+  position:absolute; top:10px; right:10px; font-size:32px; color:white; cursor:pointer;
+}
 </style>
 
 <script>
 // Show modal
 function showGraph(id){
-const modal = document.getElementById(id);
-modal.style.display = "flex";
+  const modal = document.getElementById(id);
+  modal.style.display = "flex";
 }
 
 // Close modal
@@ -190,5 +241,27 @@ document.querySelectorAll('.graph-modal').forEach(modal => {
 });
 </script>
 
+<!-- ===== ABOUT ===== -->
+<section id="about" class="container" style="padding: 8px 0 90px;">
+    <div class="grid" style="gap: 8px; max-width: 900px;">
+    <h2 class="fade-up" style="margin:0">About the Project</h2>
+    <p class="fade-up d1 muted" style="margin:0">EVIoT‑PredictiveMaint models EV component reliability from multi‑modal telemetry and maintenance logs, enabling cost‑efficient, safety‑first fleet operations.</p>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="container">
+    <div class="grid" style="gap:6px;">
+        <div class="muted">© <span id="year"></span> EVIoT Predict. All rights reserved.</div>
+        <div class="muted">Black & white theme • CSS‑only animations • Responsive.</div>
+    </div>
+    </div>
+</footer>
+
+<script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
