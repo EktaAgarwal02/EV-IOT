@@ -218,6 +218,5 @@ def form_predict():
 
     return render_template("form_predict.html", feature_types=dtypes, defaults=defaults, options=options, result=result)
 
-
 if __name__ == "__main__":
     app.run(debug=True)
